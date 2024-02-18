@@ -3,14 +3,20 @@ import './App.css';
 import LoginForm from  "./components/LoginForm";
 import { Navbar } from './components/Navbar';
 import { Route, Routes } from 'react-router';
+import SignUp from './components/SignupForm';
+import { Switch } from '@mui/material';
 
 function App() {
   return (
     <div className="App">
           {/* <Navbar/> */}
-          <Routes>
-            <Route  path="/login" element={<LoginForm />}></Route>
-          </Routes>
+          <LoginForm/>
+          {/* <SignUp/>  */}
+          {/* <Routes>
+            <Route  path="/login" Component={<LoginForm/>}></Route>
+            <Route path="/signup"  Component ={<SignUp/>}></Route>
+          </Routes> */}
+         
     </div>
   );
 }
