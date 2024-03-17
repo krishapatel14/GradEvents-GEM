@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -35,8 +37,12 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      firstname:data.get('firstName'),
+      lastname:data.get('lastName'),
+      enrollment:data.get('enrollment'),
+      phoneNo:data.get('phoneNo'),
       email: data.get('email'),
-      password: data.get('password'),
+      password: data.get('password')
     });
   };
 
@@ -92,6 +98,7 @@ export default function SignUp() {
                 //   autoComplete="family-name"
                 />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -99,6 +106,16 @@ export default function SignUp() {
                   id="college name"
                   label="College/University"
                   name="college name"
+                //   autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="Phonenumber"
+                  label="Phone No."
+                  name="phoneNo"
                 //   autoComplete="family-name"
                 />
               </Grid>
@@ -130,15 +147,18 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
+
+          <Link href='/' variant='body2'>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              // onClick={handleSubmit}
             >
               Sign Up
             </Button>
+            </Link>
+
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/login" variant='body2'>
