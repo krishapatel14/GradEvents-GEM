@@ -21,7 +21,7 @@ export const Home = () => {
       <header id="header" className="fixed-top ">
         <div className="container d-flex align-items-center">
           <h1 className="logo me-auto">
-            <a href="index.html">
+            <a href="/">
               GradEvents
             </a>
           </h1>
