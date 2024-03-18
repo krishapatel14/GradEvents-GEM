@@ -41,7 +41,7 @@ export const OranizerDashboard = () => {
       <div id="crud1" style={crud_main}>
         <span id="create" style={crud}>Create Event</span>
         <span id="update" style={crud}>Update Event</span>
-        <span id="review" style={crud}>Review Event</span>
+        <span id="review" style={crud}>Read Event</span>
         <span id="delete" style={crud}>Delete Event</span>
         &nbsp;&nbsp;
       </div>
