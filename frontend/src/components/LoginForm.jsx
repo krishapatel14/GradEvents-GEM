@@ -12,6 +12,8 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import axios from 'axios';
 // import { Link } from 'react-router-dom'
 // import SignUp from '../components/SignupForm';
 // import {useHistory}  from "react-router-dom";
@@ -33,13 +35,24 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
+  const [email, setemail] = useState("")
+  const [password, setpassword] = useState("")
+
+
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    const data = new FormData(event.target);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  
+    await axios.post('http://localhost:3001/user/login', {email,password})
+    .then(res=>console.log(res.data))
+    .catch(err=>console.log(err));
+    
+    // window.location.href='/student'
+
+    // const data = new FormData(event.target);
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
   };
 
 
@@ -93,6 +106,7 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={(e)=>setemail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -103,6 +117,7 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => setpassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -115,12 +130,11 @@ export default function SignInSide() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 // onClick={SignInForm}
-                href='/student'
+                // href='/student'
                 >
                   
                 Sign In
               </Button>
-              
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">

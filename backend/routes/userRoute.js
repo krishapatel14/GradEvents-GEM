@@ -15,11 +15,22 @@ router.post('/signup', async (req, res) => {
         email,
         password,
     }).then(users=>res.json(users));
-    return res.redirect('/login');
+    // return res.redirect('/login');
 }); 
-
-router.get('/login', (req, res) => {    
-    
-});
-
+router.post('/login', async(req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+          return res.status(401).json({ success: false, message: 'Invalid email or password' });
+        }
+        if (user.password !== password) {
+          return res.status(401).json({ success: false, message: 'Invalid email or password' });
+        }
+        res.json({ success: true, message: 'Login successful' });
+      } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+      }
+  });
 module.exports=router;
