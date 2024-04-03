@@ -47,22 +47,13 @@ export default function SignUp() {
   
   const handleSubmit = async(event) => {
     event.preventDefault();
-
-    // const data = new FormData(event.currentTarget
-    console.log("1");
+    // console.log("1");
     await axios.post("http://localhost:3001/user/signup",{name,enrollment,college,phoneNo,email,password})
     .then((response)=>{
       console.log(response.data)
     }).catch(err=>console.log(err))
-    console.log("2");
-
-    // console.log({
-    //   name:data.get('name'),
-    //   enrollment:data.get('enrollment'),
-    //   phoneNo:data.get('phoneNo'),
-    //   email: data.get('email'),
-    //   password: data.get('password')
-    // });
+    // console.log("2");
+    window.location.href='/login';
   };
 
   
@@ -169,7 +160,6 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              // href='/student'
             >
               Sign Up
             </Button>

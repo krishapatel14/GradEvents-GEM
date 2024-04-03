@@ -13,6 +13,7 @@ const User = require('./model/UserModel');
 app.use(cors())
 
 // app.use(bodyParser.urlencoded());
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
@@ -24,16 +25,4 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
-// app.use('/user',userRoute)
-app.post('/user/signup',async(req,res)=>{
-    const {name,enrollment,college,phoneNo,email,password}= res.body;
-    console.log(req.body);
- await User.create({
-        name,
-        enrollment,
-        college,
-        phoneNo,
-        email,
-        password,
-    }).then(users=>res.json(users));
-})
+app.use('/user',userRoute)
