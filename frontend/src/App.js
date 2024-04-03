@@ -8,6 +8,7 @@ import { StudentDashboard } from './components/StudentDashboard'
 import { Home } from './components/Home';
 import { Events  } from './components/Events';
 import { OranizerDashboard } from './components/OranizerDashboard';
+import { EventRegistration } from './components/EventRegistration';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/events' Component={Events }></Route>
         <Route path='/student' element={<StudentDashboard/> }></Route>
         <Route path='/organizer' element={<OranizerDashboard/>}></Route>
+        <Route path='/events/registration' element={<EventRegistration/>}></Route>
 
 
       </Routes>

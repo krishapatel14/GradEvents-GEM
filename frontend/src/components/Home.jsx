@@ -10,8 +10,8 @@ import techquiz from '../assets/img/tech-quiz.jpg'
 import seminar  from '../assets/img/seminar.jpg'
 import logodesign from '../assets/img/logo-design.jpg'
 import logo from '../assets/img/GradEvents-logos_white.png';
-import seminar2 from  '../assets/img/portfolio/seminar2.jpg';
-import hackathon from '../assets/img/portfolio/hackathon.jpg'
+// import seminar2 from  '../assets/img/portfolio/seminar2.jpg';
+// import hackathon from '../assets/img/portfolio/hackathon.jpg'
 
 
 

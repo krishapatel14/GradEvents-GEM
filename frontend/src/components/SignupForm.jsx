@@ -12,10 +12,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 
 
 
 function Copyright(props) {
+  
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -33,18 +37,35 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const [name, setname] = useState()
+  const [email, setemail] = useState()
+  const [password, setpassword] = useState()
+  const [enrollment, setenrollment] = useState()
+  const [college, setcollege] = useState()
+  const [phoneNo, setphoneNo] = useState()
+
+  
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      firstname:data.get('firstName'),
-      lastname:data.get('lastName'),
-      enrollment:data.get('enrollment'),
-      phoneNo:data.get('phoneNo'),
-      email: data.get('email'),
-      password: data.get('password')
-    });
+
+    // const data = new FormData(event.currentTarget
+    console.log("1");
+    await axios.post("http://localhost:3001/user/signup",{name,enrollment,college,phoneNo,email,password})
+    .then((response)=>{
+      console.log(response.data)
+    }).catch(err=>console.log(err))
+    console.log("2");
+
+    // console.log({
+    //   name:data.get('name'),
+    //   enrollment:data.get('enrollment'),
+    //   phoneNo:data.get('phoneNo'),
+    //   email: data.get('email'),
+    //   password: data.get('password')
+    // });
   };
+
+  
 
 
   return (
@@ -67,25 +88,15 @@ export default function SignUp() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
+                  id="name"
+                  label="Name"
+                  name="name"
                   autoComplete="family-name"
+                  onChange={(e)=>setname(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -95,6 +106,7 @@ export default function SignUp() {
                   id="enrollment"
                   label="Enrollment No."
                   name="enrollment"
+                  onChange={(e)=>setenrollment(e.target.value)}
                 //   autoComplete="family-name"
                 />
               </Grid>
@@ -106,16 +118,17 @@ export default function SignUp() {
                   id="college name"
                   label="College/University"
                   name="college name"
+                  onChange={(e)=>setcollege(e.target.value)}
                 //   autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   id="Phonenumber"
                   label="Phone No."
                   name="phoneNo"
+                  onChange={(e)=>setphoneNo(e.target.value)}
                 //   autoComplete="family-name"
                 />
               </Grid>
@@ -127,6 +140,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e)=>setemail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -138,6 +152,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e)=>setpassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -154,6 +169,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              // href='/student'
             >
               Sign Up
             </Button>

@@ -12,7 +12,10 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { Link } from 'react-router-dom'
 // import SignUp from '../components/SignupForm';
+// import {useHistory}  from "react-router-dom";
+
 
 function Copyright(props) {
   return (
@@ -32,13 +35,19 @@ const defaultTheme = createTheme();
 export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const data = new FormData(event.target);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
   };
 
+
+  // let history= useHistory();
+  // const SignInForm = () => {
+  //   history.push('/student');
+
+  // }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -105,6 +114,8 @@ export default function SignInSide() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                // onClick={SignInForm}
+                href='/student'
                 >
                   
                 Sign In
