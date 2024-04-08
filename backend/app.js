@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 // const bodyParser = require('body-parser')
 const userRoute=require('./routes/userRoute')
 const cors=require("cors");
-const User = require('./model/UserModel');
+// const User = require('./model/UserModel');
+const orgRoute=require('./routes/organizerRoute')
 
 
 app.use(cors())
@@ -26,3 +27,4 @@ app.listen(PORT, () => {
 });
 
 app.use('/user',userRoute)
+app.use('/organizer',orgRoute)

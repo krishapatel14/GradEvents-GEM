@@ -16,50 +16,42 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 
-
-
 function Copyright(props) {
   
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
+    return (
+      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        {'Copyright © '}
+        <Link color="inherit" href="https://mui.com/">
+          Your Website
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
+  
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
-  const [name, setname] = useState()
-  const [email, setemail] = useState()
-  const [password, setpassword] = useState()
-  const [enrollment, setenrollment] = useState()
-  const [college, setcollege] = useState()
-  const [phoneNo, setphoneNo] = useState()
-
-  
-  const handleSubmit = async(event) => {
-    event.preventDefault();
-    // console.log("1");
-    await axios.post("http://localhost:3001/user/signup",{name,enrollment,college,phoneNo,email,password})
-    .then((response)=>{
-      console.log(response.data)
-    }).catch(err=>console.log(err))
-    // console.log("2");
-    window.location.href='/login';
-  };
-
-  
-
-
+export const OrganizerSignup = () => {
+    const [email, setemail] = useState()
+    const [password, setpassword] = useState()
+    const [collegeCode, setcollegeCode] = useState()
+    const [college, setcollege] = useState()
+    const [phoneNo, setphoneNo] = useState()
+    const handleSubmit = async(event) => {
+        event.preventDefault();
+        // console.log("1");
+        await axios.post("http://localhost:3001/organizer/signup",{collegeCode,college,phoneNo,email,password})
+        .then((response)=>{
+          console.log(response.data)
+        }).catch(err=>console.log(err))
+        // console.log("2");
+        window.location.href='/login';
+      };
+    
   return (
+    // <div>OrganizerSignup</div>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -75,29 +67,19 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Organizer
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
+    
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="name"
-                  label="Name"
-                  name="name"
-                  autoComplete="family-name"
-                  onChange={(e)=>setname(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="enrollment"
-                  label="Enrollment No."
-                  name="enrollment"
-                  onChange={(e)=>setenrollment(e.target.value)}
+                  id="collegeCode"
+                  label="College Code."
+                  name="collegeCode"
+                  onChange={(e)=>setcollegeCode(e.target.value)}
                 //   autoComplete="family-name"
                 />
               </Grid>
@@ -115,6 +97,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                required
                   fullWidth
                   id="Phonenumber"
                   label="Phone No."
@@ -143,19 +126,11 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  onChange={(e)=>setpassword(e.target.value)}
+                  onChange={(e)=>setpassword(e.target.value+'organizer')}
                 />
               </Grid>
               
             </Grid>
-            <Grid container justifyContent="flex-end">
-
-            <Grid item>
-                <Link href="/signup/organizer" variant='body2'>
-                   Organizer?Signup here
-                </Link>
-              </Grid>
-              </Grid>
 
           <Link href='/' variant='body2'>
             <Button
@@ -180,5 +155,5 @@ export default function SignUp() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
-  );
+  )
 }

@@ -37,16 +37,30 @@ const defaultTheme = createTheme();
 export default function SignInSide() {
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
+  const [error, seterror] = useState("")
 
-
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    await axios.post('http://localhost:3001/user/login', {email,password})
-    .then(res=>console.log(res.data))
-    .catch(err=>console.log(err));
-    
-    // window.location.href='/student'
+
+    console.log(password,email);
+    if (!password.toLowerCase().includes('organizer')) {
+      await axios.post('http://localhost:3001/user/login', { email, password })
+        .then(res => {
+          console.log(res.data)
+          window.location.href = '/student'
+        })
+        .catch(
+          err => {
+            seterror(err.response.data.message)
+          }
+        )
+    } else {
+      await axios.post('http://localhost:3001/organizer/login', { email, password })
+        .then(res => {
+          console.log(res.data);
+          window.location.href = '/organizer'
+        }).catch(err => seterror(err.response.data.message))
+    }
 
     // const data = new FormData(event.target);
     // console.log({
@@ -62,6 +76,9 @@ export default function SignInSide() {
 
   // }
 
+  const errorMsg = {
+    color: "red",
+  }
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -106,7 +123,7 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                onChange={(e)=>setemail(e.target.value)}
+                onChange={(e) => setemail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -119,20 +136,23 @@ export default function SignInSide() {
                 autoComplete="current-password"
                 onChange={(e) => setpassword(e.target.value)}
               />
+              {error && <p style={errorMsg}>{error}</p>}
+
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              
+
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                // onClick={SignInForm}
-                // href='/student'
-                >
-                  
+              // onClick={SignInForm}
+              // href='/student'
+
+              >
+
                 Sign In
               </Button>
               <Grid container>

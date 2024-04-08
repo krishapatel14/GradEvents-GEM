@@ -1,20 +1,18 @@
-const userController = require('../controller/UserController')
 const { Router } = require('express');
-const User = require('../model/UserModel');
+const Organizer = require('../model/OrganizerModel');
 
 const router = Router();
 
 router.post('/signup', async (req, res) => {
-  const { name, enrollment, college, phoneNo, email, password } = req.body;
+  const { collegeCode, college, phoneNo, email, password } = req.body;
   console.log(req.body);
-  await User.create({
-    name,
-    enrollment,
+  await Organizer.create({
+    collegeCode,
     college,
     phoneNo,
     email,
     password,
-  }).then(users => res.json(users));
+  }).then(org => res.json(org));
   // return res.redirect('/login');
 });
 router.post('/login', async (req, res) => {
@@ -29,11 +27,11 @@ router.post('/login', async (req, res) => {
 
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email });
-    if (!user) {
+    const org = await Organizer.findOne({ email });
+    if (!org) {
       return res.status(401).json({ success: false, message: 'Invalid email or user not found' });
     }
-    if (user.password !== password) {
+    if (org.password !==(password+"organizer".toLowerCase())) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
     res.json({ success: true, message: 'Login successful' });
