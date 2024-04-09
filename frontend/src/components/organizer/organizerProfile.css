@@ -1,0 +1,35 @@
+#container{
+    align-items: center;
+    border: 5px solid  #0f2349;
+    height:500px;
+    width:400px;
+    border-radius: 25px;
+    margin-top: 20px;
+    margin-left:400px ;
+}
+#primage{
+    border: 2px solid #788fba ;
+    border-radius: 50px;
+    width:50px;
+    height:50px;
+    margin-top: 30px;
+    position: relative;
+    margin-left: 42%;
+    /* background-image: url("images.png"); */
+}
+#profile{
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 40%;
+    color: #0f2349;
+    font-size:25px;
+}
+#innercontainer{
+    margin-left:10px;
+    margin-top: 70px;
+    color: #0f2349;
+}
+#Collegename,#CollegeCode,#contact,#email{
+    background-color: #788fba;
+    width: 250px;
+}

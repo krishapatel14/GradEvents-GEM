@@ -41,9 +41,10 @@ export default function SignInSide() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(password,email);
-    if (!password.toLowerCase().includes('organizer')) {
+    // const orgData=await axios.get('http://localhost:3001/organizer/getall')
+    // console.log(orgData.data);
+    // const role=orgData.data.role;
+    if(password!=='organizer') {
       await axios.post('http://localhost:3001/user/login', { email, password })
         .then(res => {
           console.log(res.data)
@@ -62,19 +63,12 @@ export default function SignInSide() {
         }).catch(err => seterror(err.response.data.message))
     }
 
-    // const data = new FormData(event.target);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
+    const data = new FormData(event.target);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
   };
-
-
-  // let history= useHistory();
-  // const SignInForm = () => {
-  //   history.push('/student');
-
-  // }
 
   const errorMsg = {
     color: "red",

@@ -5,12 +5,13 @@ import { Navbar } from './components/Navbar';
 import { Route, Router, Routes } from 'react-router';
 import SignUp from './components/SignupForm';
 // import OrganizerSignup from './components/OrganizerSignup'
-import { StudentDashboard } from './components/StudentDashboard'
+import { StudentDashboard } from './components/student/StudentDashboard'
 import { Home } from './components/Home';
 import { Events  } from './components/Events';
-import { OranizerDashboard } from './components/OranizerDashboard';
-import { EventRegistration } from './components/EventRegistration';
-import { OrganizerSignup } from './components/OrganizerSignup';
+import { OranizerDashboard } from './components/organizer/OranizerDashboard'
+import { EventRegistration } from './components/student/EventRegistration';
+import { OrganizerSignup } from './components/organizer/OrganizerSignup';
+import { OrganizerProfile } from './components/organizer/OrganizerProfile';
 
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
         <Route path='/events/registration' element={<EventRegistration/>}></Route>
         {/* <Route path='/signup/organizer' element={OrganizerSignup}></Route> */}
         <Route path='/signup/organizer' element={<OrganizerSignup></OrganizerSignup>}></Route>
-
+        <Route path='/organizer/profile' element={<OrganizerProfile/>}></Route>
       </Routes>
 
     </div>

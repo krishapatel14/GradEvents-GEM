@@ -27,11 +27,12 @@ router.post('/login', async (req, res) => {
 
   const { email, password } = req.body;
   try {
-    const org = await Organizer.findOne({ email });
+    const org = await Organizer.findOne({ email});
+    console.log(org);
     if (!org) {
       return res.status(401).json({ success: false, message: 'Invalid email or user not found' });
     }
-    if (org.password !==(password+"organizer".toLowerCase())) {
+    if (org.password !==password) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
     res.json({ success: true, message: 'Login successful' });
@@ -41,7 +42,10 @@ router.post('/login', async (req, res) => {
   }
 });
 
-
+router.get('/getall',async(req,res)=>{
+  const org=await  Organizer.find();
+  res.send(org);
+})
 
 
 

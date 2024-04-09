@@ -126,7 +126,7 @@ export const OrganizerSignup = () => {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  onChange={(e)=>setpassword(e.target.value+'organizer')}
+                  onChange={(e)=>setpassword(e.target.value)}
                 />
               </Grid>
               
