@@ -51,9 +51,9 @@ export const Home = () => {
                   <span>SearchBy</span> <i className="bi bi-chevron-down" />
                 </a>
                 <ul>
-                  <li>
+                  {/* <li>
                     <a href="#">CollegeList</a>
-                  </li>
+                  </li> */}
                   <li className="dropdown">
                     <a href="#">
                       <span>Event Type</span>{" "}
@@ -61,27 +61,27 @@ export const Home = () => {
                     </a>
                     <ul>
                       <li>
-                        <a href="#">
+                        <a href="/events/seminar">
                           Seminar/Workshop
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="/events/technical">
                           Technical
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="/events/cultural">
                           Cultural
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="/events/nontechnical">
                           Non-Technical
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="/events/other">
                           Others
                         </a>
                       </li>

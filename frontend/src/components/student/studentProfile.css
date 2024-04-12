@@ -1,4 +1,4 @@
-#containerorg{
+#containerstu{
     
     border: 5px solid  #0f2349;
     height:500px;
@@ -24,15 +24,16 @@
     color: #0f2349;
     font-size:25px;
 }
-#innercontainerorg{
+#innercontainerstu{
     margin-left:10px;
     position: fixed;
     margin-top: 70px;
     color: #0f2349;
 }
-#Collegename,#CollegeCode1,#contact,#email2{
-    background-color: #788fba;
-    width: 250px;
+#Studentname,#Collegename,#Enrollment,#contact,#email1{
     position: fixed;
-    
+    background-color: #788fba;
+    width: 200px;
+    color: aliceblue;
+    padding: 10px;
 }

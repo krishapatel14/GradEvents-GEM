@@ -1,0 +1,42 @@
+nav{
+    padding: 20px;
+    background-color: #37517e;
+}
+#navbar1{
+   
+    font-size: larger;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    color:whitesmoke;
+}
+
+.card {
+width: 300px;
+border: 1px solid #ccc;
+border-radius: 8px;
+margin: 20px;
+padding: 15px;
+display: inline-block;
+vertical-align: top;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+margin-left: 45px;
+background-color: rgb(21, 26, 46);
+color: aliceblue;
+}
+
+.card img {
+max-width: 100%;
+height: auto;
+}
+
+@media (max-width: 768px) {
+.card {
+width: calc(50% - 20px);
+}
+}
+
+@media (max-width: 480px) {
+.card {
+width: calc(100% - 20px);
+}
+}
