@@ -40,7 +40,7 @@ export const OranizerDashboard = () => {
             </div>
             <div className="col-sm-6">
               <a
-                href="#addEventModal"
+                href="/events/addevent"
                 className="btn btn-success"
                 data-toggle="modal"
               >

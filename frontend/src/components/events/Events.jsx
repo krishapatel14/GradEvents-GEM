@@ -1,13 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./events.css"
+import axios from 'axios';
 
 export const Events = () => {
+  const [events, setevents] = useState([]);
 
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  async function fetchEvents() {
+    try {
+      const response = await axios.get('http://localhost:3001/event/getevents');
+      setevents(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }  
   return (
     <>
-    <nav>
+      <nav>
       <span id="navbar1">Events</span>
     </nav>
+    <div className="container">
+    {events.map(item=>(
+      <div className="card">  
+        <h2>{item.eventName}</h2>
+        <p>{item.eventDateTime}</p>
+        <p>{item.college}</p>
+        <p>{item.eventType}</p>
+        <button><a href="/events/registration">Register</a></button>
+      </div>
+       ))}
+      </div>
+   
+    </>
+  /*
     <div className="container">
       <div className="card">
         <img src="event 1.jpg" alt="event 1" />
@@ -49,10 +77,10 @@ export const Events = () => {
         <p>event type</p>
         <button><a href="/events/registration">Register</a></button>
       </div>
-    </div>
-  </>
+    </div> */
   
-
+  
+    
     );
 };
 

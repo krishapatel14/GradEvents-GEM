@@ -15,8 +15,8 @@ export const EventRegistration = () => {
     }
     const h2 = {
         "text-align": " center",
-        "margin-top": "50px",
-        "margin-bottom": "50px",
+        "margin-top": "20px",
+        "margin-bottom": "20px",
         // "background-color":"green",
         "color":"purple",
         "font-size": "3em",
@@ -66,6 +66,11 @@ export const EventRegistration = () => {
                         <label htmlFor="email" style={label}>email:</label>
                         <input type="email" id="email" name="email" style={input} required />
                         <span className="error" id="emailError" style={error} />
+                    </div>
+                    <div style={form_div}>
+                        <label htmlFor="Enrollment No." style={label}>Enrollment:</label>
+                        <input type="text" id="enrollment" name="enrollment" style={input} required />
+                        <span className="error" id="enrollmentError" style={error} />
                     </div>
                     <div style={form_div}>
                         <label htmlFor="college" style={label}>college_name:</label>

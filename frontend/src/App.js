@@ -19,6 +19,7 @@ import { EventsNontechnical } from './components/events/eventsNontechnical';
 import { EventsOthers } from './components/events/eventsOthers';
 import { EventsSeminar } from './components/events/eventsSeminar';
 import { EventsTechnical } from './components/events/eventsTechnical';
+import { AddEvent } from './components/events/addEvent';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path='/events/other' element={<EventsOthers/> }></Route>
         <Route path='/events/seminar' element={<EventsSeminar/> }></Route>
         <Route path='/events/technical' element={<EventsTechnical/>}></Route>
+        <Route path='/events/addevent' element={<AddEvent/>}></Route>
       </Routes>
 
     </div>

@@ -6,8 +6,8 @@ export const StudentDashboard = () => {
 <>
      <nav>
                 <span id="nav1">Student Name</span>
-                <span id="nav2"><a href="" id='a'>Register Events</a></span>
-                <span id="nav3"><a href="" id='a'>History</a></span>
+                <span id="nav2"><a href="" id='a'>Registered Events</a></span>
+                <span id="nav3"><a href="/events" id='a'>Events</a></span>
                 <span id="nav4"><a href="" id='a'>Profile</a></span>
             </nav>
             <div className="container-xl">

@@ -1,0 +1,56 @@
+#addEvent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 600px;
+    height: 100vh;
+    margin: auto;
+    background: white;
+}
+.modal-header{
+    color: blueviolet;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+.modal-title{
+    font-size: 50px;
+    font-weight: bolder;
+}
+.form-group{
+    width: 400px;
+    text-align: left;
+}
+.form-group label{
+    font-size: 16px;
+    font-weight: bold;
+}
+.form-group{
+    margin-top: 2rem;
+}
+.modal-footer{
+    /* margin-top: 2rem; */
+    width: 400px;
+}
+.modal-body{
+    height: fit-content;
+}
+.modal-footer input{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.modal-footer input:nth-child(1){
+    display: none;
+}
+
+.modal-footer input:nth-child(2){
+    margin-left: 100%;
+}
+#selectForm{
+    height: 45px;
+    width: 100%;
+    border: 1px solid #d4d1d1;
+    border-radius: 6px;
+    font-size: larger;
+}

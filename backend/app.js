@@ -4,16 +4,17 @@ const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-// const bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const userRoute=require('./routes/userRoute')
 const cors=require("cors");
 // const User = require('./model/UserModel');
 const orgRoute=require('./routes/organizerRoute')
+const eventRoute=require('./routes/eventRoute')
 
 
 app.use(cors())
 
-// app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -28,3 +29,6 @@ app.listen(PORT, () => {
 
 app.use('/user',userRoute)
 app.use('/organizer',orgRoute)
+app.use('/event',eventRoute)
+
+
