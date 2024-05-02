@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose');
+const md5 = require('md5');
+
 // const { createHmac, randomBytes } = require('node:crypto');
 // const crypto = require('crypto');
 // const { createUserToken } = require('../utils/authentication');
@@ -75,6 +77,17 @@ const userSchema = new Schema({
 //     return token;
 // });
 
+userSchema.pre("save", function (next) {
+    const user = this;
+    if (!user.isModified("password")) return;
+    const hashedPassword = md5(user.password);
+    user.password = hashedPassword;
+    next();
+});
+userSchema.methods.comparePassword = function (password) {
+    const hashedPassword = md5(password);
+    return this.password === hashedPassword;
+};
 
 
 const user = model('user', userSchema);

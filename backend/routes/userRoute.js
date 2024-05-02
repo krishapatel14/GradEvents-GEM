@@ -33,7 +33,17 @@ router.post('/login', async (req, res) => {
     if (!user) {
       return res.status(401).json({ success: false, message: 'Invalid email or user not found' });
     }
-    if (user.password !== password) {
+    const isPasswordMatch = user.comparePassword(password);
+    //     if (user.password !== password) {
+    //       return res.status(401).json({ success: false, message: 'Invalid email or password' });
+    //     }
+    //     res.json({ success: true, message: 'Login successful' });
+    //   } catch (error) {
+    //     console.error('Login error:', error);
+    //     res.status(500).json({ success: false, message: 'Server error' });
+    //   }
+    // });
+    if (!isPasswordMatch) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
     res.json({ success: true, message: 'Login successful' });
