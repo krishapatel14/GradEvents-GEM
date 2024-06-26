@@ -4,13 +4,15 @@ const Event=require('../model/EventModel');
 const router = Router();
 
 router.post('/addevent', async (req, res) => {
-    const { eventName, eventType, eventDateTime, college } = req.body;
+    const { eventName, eventType, eventDateTime, college,cordinatorName,contactEmail } = req.body;
     console.log(req.body);
     await Event.create({
       eventName,
       eventType,
       eventDateTime,
       college,
+      cordinatorName,
+      contactEmail
     }).then(org => res.json(org));
     // return res.redirect('/login');
   });

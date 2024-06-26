@@ -4,8 +4,8 @@
     height:500px;
     width:400px;
     border-radius: 25px;
-    margin-top: 20px;
-    margin-left:400px ;
+    margin-top: 100px;
+    margin-left:39% ;
 }
 #primage{
     border: 2px solid #788fba ;
@@ -20,20 +20,20 @@
 #profile{
     font-weight: bold;
     margin-top: 20px;
-    position: relative;
+    /* position: relative; */
     color: #0f2349;
     font-size:25px;
 }
 #innercontainerstu{
     margin-left:10px;
-    position: fixed;
+    /* position: fixed; */
     margin-top: 70px;
     color: #0f2349;
 }
-#Studentname,#Collegename,#Enrollment,#contact,#email1{
-    position: fixed;
-    background-color: #788fba;
+#Studentname,#Collegename,#Enrollment,#phone2,#email1{
+    /* position: fixed; */
+    /* background-color: #788fba; */
     width: 200px;
-    color: aliceblue;
+    /* color: aliceblue; */
     padding: 10px;
 }

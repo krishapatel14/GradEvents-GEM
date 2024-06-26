@@ -1,14 +1,62 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './student.css'
+import axios from 'axios';
 
 export const StudentDashboard = () => {
+    const [cookieValue, setCookieValue] = useState(null);
+    const [data, setData] = useState([]);
+    const [cookieValue2,setCookieValue2] =useState(null)
+
+    useEffect(() => {
+        // Function to retrieve the value of a cookie
+        function getCookie(name) {
+          const nameEQ = name + "=";
+          const cookies = document.cookie.split(';');
+          for(let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i];
+            while (cookie.charAt(0) === ' ') {
+              cookie = cookie.substring(1, cookie.length);
+            }
+            if (cookie.indexOf(nameEQ) === 0) {
+              return cookie.substring(nameEQ.length, cookie.length);
+            }
+          }
+          return null;
+        }
+        // Retrieve the value of the "username" cookie
+        const username = getCookie("studentName");
+        if (username) {
+          setCookieValue(username);
+        }
+        const id=getCookie('studentId')
+        if(id){
+            setCookieValue2(id);
+        }
+    },[]);
+    useEffect(() => {
+        if (cookieValue2) {
+          let url = 'http://localhost:3001/user/eventreg/participants';
+          axios.get(url, {
+            params: {
+              userenroll: cookieValue2
+            }
+          })
+            .then(response => {
+                console.log(response.data);
+              setData(response.data); // Adjust based on the structure of the response
+            })
+            .catch(error => {
+              console.error('Error fetching data:', error);
+            });
+        }
+      }, [cookieValue2]);
   return (
 <>
-     <nav>
-                <span id="nav1">Student Name</span>
+           <nav>
+                <span id="nav1">{cookieValue ? cookieValue : ""}</span>
                 <span id="nav2"><a href="" id='a'>Registered Events</a></span>
                 <span id="nav3"><a href="/events" id='a'>Events</a></span>
-                <span id="nav4"><a href="" id='a'>Profile</a></span>
+                <span id="nav4"><a href="/student/profile" id='a'>Profile</a></span>
             </nav>
             <div className="container-xl">
                 <div className="table-responsive">
@@ -23,45 +71,23 @@ export const StudentDashboard = () => {
                         <table className="table table-striped table-hover" id="myTable">
                             <thead>
                                 <tr>
-                                    <th>Event Name</th>
-                                    <th>Event Type</th>
-                                    <th>Date</th>
-                                    <th>Branch</th>
+                                {/* <th>Type</th> */}
+                                <th>Event Name</th>
+                                <th>Enrollment</th>
+                                <th>Event CollegeName</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Event 1</td>
-                                    <td>Seminar</td>
-                                    <td>24 May 10:00 AM</td>
-                                    <td>Computer</td>
+                                {data.map((item) => (
+                                <tr key={item.id}>
+                                    {/* <td>{item.eventType}</td> */}
+                                    <td>{item.userEvent}</td>
+                                    <td>{item.userenroll}</td>
+                                    <td>{item.usercollege}</td>
                                 </tr>
-                                <tr>
-                                    <td>Event 2</td>
-                                    <td>Hackathon</td>
-                                    <td>12 April 12:00 PM</td>
-                                    <td>IT</td>
-                                </tr>
-                                <tr>
-                                    <td>Event 3</td>
-                                    <td>Treasure Hunt</td>
-                                    <td>28 May 11:30 AM</td>
-                                    <td>Architecture</td>
-                                </tr>
-                                <tr>
-                                    <td>Event 4</td>
-                                    <td>Cultural</td>
-                                    <td>23 April 10:00 AM</td>
-                                    <td>Law</td>
-                                </tr>
-                                <tr>
-                                    <td>Event 5</td>
-                                    <td>Sports</td>
-                                    <td>30 April 10:00 AM</td>
-                                    <td>Sports</td>
-                                </tr>
+                                ))}
                             </tbody>
-                        </table>
+                        </table>
                     </div>
                 </div>
             </div>

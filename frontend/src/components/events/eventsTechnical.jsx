@@ -23,15 +23,20 @@ export const EventsTechnical = () => {
     <span id="navbar1">Technical Events</span>
   </nav>
   <div className="container">
-  {events.map(item=>(
+  {events.map(item=>{
+    const encodedEventName = encodeURIComponent(item.eventName.replace(/\s+/g, '-'));
+
+    return(
     <div className="card">  
       <h2>{item.eventName}</h2>
-      <p>{item.eventDateTime}</p>
-      <p>{item.college}</p>
-      <p>{item.eventType}</p>
-      <button><a href="/events/registration">Register</a></button>
+        <p>Time -- {item.eventDateTime}</p>
+        <p>College -- {item.college}</p>
+        <p>Type -- {item.eventType}</p>
+        <p>Cordinator -- {item.cordinatorName}</p>
+        <p>Contact -- {item.contactEmail}</p>
+        <button><a href={`/events/registration?eventName=${encodedEventName}`}>Register</a></button>
     </div>
-     ))}
+     )})}
     </div>
  
   </>

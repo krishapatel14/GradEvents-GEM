@@ -1,4 +1,8 @@
 import React from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 // import "./css/eventReg.css"
 
 export const EventRegistration = () => {
@@ -52,34 +56,71 @@ export const EventRegistration = () => {
         "height":"40px",
         "font-size":"20px"
     }
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [enrollment, setEnrollment] = useState('');
+    const [college, setCollege] = useState('');
+    const [phone, setPhone] = useState('');
+
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        const currentUrl = window.location.href.toString();
+        console.log(currentUrl);
+        const eventStr = currentUrl.split('=')[1];
+        console.log(eventStr);
+        try {
+            console.log('infunct');
+            // const location = window.location.href;
+            // const queryParams = new URLSearchParams(location);
+            // const eventName = urlParams.get('eventName');
+            // console.log(eventName);
+            const response = await axios.post('http://localhost:3001/user/eventreg/eventregister', {
+                name,
+                email,
+                enrollment,
+                college,
+                phone,
+                eventStr,
+            });
+            // Handle response as needed
+            console.log(response.data);
+        } catch (error) {
+            // Handle error
+            console.error('Error submitting form:', error);
+        }
+        window.location.href='/student';
+    };
+
     return (
         <>
             <div className="container" style={container}>
                 <h2 style={h2}>Event Registration</h2>
-                <form id="myForm" onsubmit="validateForm(event)" style={form}>
+                <form id="myForm" onSubmit={handleFormSubmit} style={form}>
                     <div style={form_div}>
                         <label htmlFor="name" style={label}>name:</label>
-                        <input type="text" id="name" name="name" style={input} required />
+                        <input type="text" id="name" name="name" style={input} value={name} onChange={(e)=> setName(e.target.value)} required />
                         <span className="error" id="nameError" style={error} />
                     </div>
                     <div style={form_div}>
                         <label htmlFor="email" style={label}>email:</label>
-                        <input type="email" id="email" name="email" style={input} required />
+                        <input type="email" id="email" name="email" style={input} value={email} onChange={(e)=> setEmail(e.target.value)} required />
                         <span className="error" id="emailError" style={error} />
                     </div>
                     <div style={form_div}>
                         <label htmlFor="Enrollment No." style={label}>Enrollment:</label>
-                        <input type="text" id="enrollment" name="enrollment" style={input} required />
+                        <input type="text" id="enrollment" name="enrollment" style={input} value={enrollment} onChange={(e)=> setEnrollment(e.target.value)} required />
                         <span className="error" id="enrollmentError" style={error} />
                     </div>
                     <div style={form_div}>
                         <label htmlFor="college" style={label}>college_name:</label>
-                        <input type="text" id="college" name="college" style={input} required />
+                        <input type="text" id="college" name="college" style={input} value={college} onChange={(e)=> setCollege(e.target.value)} required />
                         <span className="error" id="collegeError" style={error} />
                     </div>
                     <div style={form_div}>
                         <label htmlFor="phone" style={label}>phoneNo:</label>
-                        <input type="tel" id="phone" name="phone" style={input} required />
+                        <input type="tel" id="phone" name="phone" style={input} value={phone} onChange={(e)=> setPhone(e.target.value)} required />
                         <span className="error" id="phoneError" style={error} />
                     </div>
 

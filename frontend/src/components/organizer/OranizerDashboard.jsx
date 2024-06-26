@@ -1,8 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./organizer.css"
+import axios from 'axios';
 
 export const OranizerDashboard = () => {
+  const [data, setData] = useState([]);
+  const [cookieValue, setCookieValue] = useState(null);
 
+  useEffect(() => {
+    function getCookie(name) {
+      const nameEQ = name + "=";
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        while (cookie.charAt(0) === ' ') {
+          cookie = cookie.substring(1, cookie.length);
+        }
+        if (cookie.indexOf(nameEQ) === 0) {
+          return cookie.substring(nameEQ.length, cookie.length);
+        }
+      }
+      return null;
+    }
+
+    // Retrieve the value of the "orgName" cookie
+    const username = getCookie("orgName");
+    if (username) {
+      setCookieValue(username);
+    }
+  }, []);
+  useEffect(() => {
+    if (cookieValue) {
+      let url = 'http://localhost:3001/organizer/participants';
+      axios.get(url, {
+        params: {
+          college: cookieValue
+        }
+      })
+        .then(response => {
+          setData(response.data); // Adjust based on the structure of the response
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }
+  }, [cookieValue]);
   return (
     <>
      <link
@@ -23,9 +64,9 @@ export const OranizerDashboard = () => {
   />
   <>
   <nav>
-    <span id="nav1">New Lj Institute Of Engineering</span>
+    <span id="nav1">{cookieValue?cookieValue:null}</span>
     <span id="nav2"><a href='' id='a'>Manage Events</a></span>
-    <span id="nav3"><a href="" id='a'>History</a></span>
+    {/* <span id="nav3"><a href="" id='a'>History</a></span> */}
     <span id="nav4"><a href="/organizer/profile" id='a'>profile</a></span>
   </nav>
   <div className="container-xl">
@@ -46,175 +87,36 @@ export const OranizerDashboard = () => {
               >
                 <i className="material-icons"></i> <span>Add New Event</span>
               </a>
-              <a
+              {/* <a
                 href="#deleteEventModal"
                 className="btn btn-danger"
                 data-toggle="modal"
               >
                 <i className="material-icons"></i> <span>Delete</span>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
         <table className="table table-striped table-hover" id="myTable">
           <thead>
             <tr>
-              <th>
-                <span className="custom-checkbox">
-                  <input type="checkbox" id="selectAll" />
-                  <label htmlFor="selectAll" />
-                </span>
-              </th>
-              <th>Event Name</th>
-              <th>Event type</th>
+              <th>Type</th>
+              <th>Name</th>
               <th>Date</th>
-              <th>Branch</th>
-              <th>Actions</th>
+              <th>College</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <span className="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    id="checkbox1"
-                    name="options[]"
-                    defaultValue={1}
-                  />
-                  <label htmlFor="checkbox1" />
-                </span>
-              </td>
-              <td>Event 1</td>
-              <td>Seminar</td>
-              <td>24 may 10am</td>
-              <td>Computer</td>
-              <td>
-                <a href="#editEventModal" className="edit" data-toggle="modal">
-                  <i
-                    className="material-icons"
-                    data-toggle="tooltip"
-                    title="Edit"
-                  >
-                    
-                  </i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span className="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    id="checkbox2"
-                    name="options[]"
-                    defaultValue={1}
-                  />
-                  <label htmlFor="checkbox2" />
-                </span>
-              </td>
-              <td>Event 2</td>
-              <td>Hackathon</td>
-              <td>12 April 12pm </td>
-              <td>IT</td>
-              <td>
-                <a href="#editEventModal" className="edit" data-toggle="modal">
-                  <i
-                    className="material-icons"
-                    data-toggle="tooltip"
-                    title="Edit"
-                  >
-                    
-                  </i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span className="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    id="checkbox3"
-                    name="options[]"
-                    defaultValue={1}
-                  />
-                  <label htmlFor="checkbox3" />
-                </span>
-              </td>
-              <td>Event 3</td>
-              <td>Tresure Hunt</td>
-              <td>28 may 11:30 am</td>
-              <td>Architecture</td>
-              <td>
-                <a href="#editEventModal" className="edit" data-toggle="modal">
-                  <i
-                    className="material-icons"
-                    data-toggle="tooltip"
-                    title="Edit"
-                  >
-                    
-                  </i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span className="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    id="checkbox4"
-                    name="options[]"
-                    defaultValue={1}
-                  />
-                  <label htmlFor="checkbox4" />
-                </span>
-              </td>
-              <td>Event 4</td>
-              <td>cultural</td>
-              <td>23 april 10 am</td>
-              <td>Law</td>
-              <td>
-                <a href="#editEventModal" className="edit" data-toggle="modal">
-                  <i
-                    className="material-icons"
-                    data-toggle="tooltip"
-                    title="Edit"
-                  >
-                    
-                  </i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span className="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    id="checkbox5"
-                    name="options[]"
-                    defaultValue={1}
-                  />
-                  <label htmlFor="checkbox5" />
-                </span>
-              </td>
-              <td>Event 5</td>
-              <td>sports</td>
-              <td>30 April 10 am</td>
-              <td>sports</td>
-              <td>
-                <a href="#editEventModal" className="edit" data-toggle="modal">
-                  <i
-                    className="material-icons"
-                    data-toggle="tooltip"
-                    title="Edit"
-                  >
-                    
-                  </i>
-                </a>
-              </td>
-            </tr>
+            {data.map((item) => (
+              <tr key={item.id}>
+                <td>{item.eventType}</td>
+                <td>{item.eventName}</td>
+                <td>{item.eventDateTime}</td>
+                <td>{item.college}</td>
+              </tr>
+            ))}
           </tbody>
-        </table>
+        </table>
       </div>
     </div>
   </div>

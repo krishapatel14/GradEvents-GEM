@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -24,7 +22,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        gradEvents
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -47,7 +45,19 @@ export default function SignInSide() {
     if(password!=='organizer') {
       await axios.post('http://localhost:3001/user/login', { email, password })
         .then(res => {
-          console.log(res.data)
+          console.log(res.data);
+          function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+        // Example usage:
+        setCookie("studentId", res.data.enrollment, 30); // Sets a cookie named "username" with value "john_doe" that expires in 30 days.
+        setCookie("studentName", res.data.name, 30);
           window.location.href = '/student'
         })
         .catch(
@@ -57,10 +67,23 @@ export default function SignInSide() {
         )
     } else {
       await axios.post('http://localhost:3001/organizer/login', { email, password })
-        .then(res => {
-          console.log(res.data);
-          window.location.href = '/organizer'
-        }).catch(err => seterror(err.response.data.message))
+      .then(res => {
+        console.log(res.data);
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+        // Example usage:
+        setCookie("orgEmail", res.data.email, 30); // Sets a cookie named "username" with value "john_doe" that expires in 30 days.
+        setCookie("orgName", res.data.college, 30);
+        window.location.href = '/organizer'
+      }).catch(err => seterror(err.response.data.message))
+
     }
 
     const data = new FormData(event.target);
@@ -132,10 +155,10 @@ export default function SignInSide() {
               />
               {error && <p style={errorMsg}>{error}</p>}
 
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
-              />
+              /> */}
 
               <Button
                 type="submit"
@@ -144,18 +167,16 @@ export default function SignInSide() {
                 sx={{ mt: 3, mb: 2 }}
               // onClick={SignInForm}
               // href='/student'
-
               >
-
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
+                {/* <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?
                   </Link>
-                </Grid>
-                <Grid item>
+                </Grid> */}
+                <Grid container justifyContent="flex-end">
                   <Link href='/signup' variant='body2'>
                     {"Don't have an account? Sign Up"}
                   </Link>

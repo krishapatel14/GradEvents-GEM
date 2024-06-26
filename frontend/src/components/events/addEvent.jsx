@@ -7,11 +7,13 @@ export const AddEvent = () => {
   const [eventType, seteventType] = useState("")
   const [college, setcollege] = useState("")
   const [eventDateTime,seteventdatetime]=useState(new Date())
+  const[cordinatorName,setcordinatorname]=useState("")
+  const[contactEmail,setcontactemail]=useState("")
 
 
     const handleSubmit=async(event)=>{
       event.preventDefault();
-      await axios.post('http://localhost:3001/event/addevent',{eventName,eventType,college,eventDateTime})
+      await axios.post('http://localhost:3001/event/addevent',{eventName,eventType,college,eventDateTime,cordinatorName,contactEmail})
       .then(res=>{
         console.log(res.data);
       }).catch(err=>console.log(err));
@@ -24,8 +26,6 @@ export const AddEvent = () => {
         <form id='addEvent' onSubmit={handleSubmit} >
           <div className="modal-header">
             <h4 className="modal-title">Add Event</h4>
-          
-          
           </div>
           <div className="modal-body">
             <div className="form-group">
@@ -55,7 +55,6 @@ export const AddEvent = () => {
                 className="form-control"
                 required=""
                 onChange={(e)=>seteventType(e.target.value)}
-
               /> */}
             </div>
             <div className="form-group">
@@ -77,6 +76,26 @@ export const AddEvent = () => {
                 className="form-control"
                 required=""
                 onChange={(e)=>setcollege(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Cordinator Name</label>
+              <input
+                type="text"
+                id="addformname"
+                className="form-control"
+                required=""
+                onChange={(e)=>setcordinatorname(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Contact email</label>
+              <input
+                type="email"
+                id="addformname"
+                className="form-control"
+                required=""
+                onChange={(e)=>setcontactemail(e.target.value)}
               />
             </div>
           </div>

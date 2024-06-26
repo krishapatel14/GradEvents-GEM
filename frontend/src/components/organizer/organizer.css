@@ -11,7 +11,6 @@ nav{
 }
 #nav1{
     padding-right: 550px;
-    
     font-size: larger;
     /* font-family: 'Times New Roman', Times, serif; */
     font-size: larger;
@@ -24,7 +23,7 @@ nav{
 }
        
 .table-responsive {
-    margin: 30px 0;
+    margin: 40px 0;
 }
 .table-wrapper {
 	background: #fff;
@@ -75,7 +74,7 @@ table.table tr th, table.table tr td {
 	vertical-align: middle;
 }
 table.table tr th:first-child {
-	width: 60px;
+	width: 150px;
 }
 table.table tr th:last-child {
 	width: 100px;
@@ -122,7 +121,7 @@ table.table .avatar {
 }
    
 /* Custom checkbox */
-.custom-checkbox {
+/* .custom-checkbox {
 	position: relative;
 }
 .custom-checkbox input[type="checkbox"] {    
@@ -171,7 +170,8 @@ table.table .avatar {
 	cursor: auto;
 	box-shadow: none;
 	background: #ddd;
-}
+} */
+
 /* Modal styles */
 .modal .modal-dialog {
 	max-width: 400px;

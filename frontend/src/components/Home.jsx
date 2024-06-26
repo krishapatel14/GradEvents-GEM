@@ -10,8 +10,8 @@ import techquiz from '../assets/img/tech-quiz.jpg'
 import seminar  from '../assets/img/seminar.jpg'
 import logodesign from '../assets/img/logo-design.jpg'
 import logo from '../assets/img/GradEvents-logos_white.png';
-// import seminar2 from  '../assets/img/portfolio/seminar2.jpg';
-// import hackathon from '../assets/img/portfolio/hackathon.jpg'
+import seminar2 from  '../assets/img/portfolio/seminar2.jpg';
+import hackathon from '../assets/img/portfolio/hackathon.jpg'
 
 
 
@@ -25,8 +25,7 @@ export const Home = () => {
               GradEvents
             </a>
           </h1>
-          {/* Uncomment below if you prefer to use an image logo */}
-          {/* <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>*/}
+          
           <nav id="navbar" className="navbar">
             <ul>
               <li>
@@ -104,11 +103,9 @@ export const Home = () => {
             </ul>
             <i className="bi bi-list mobile-nav-toggle" />
           </nav>
-          {/* .navbar */}
         </div>
       </header>
-      {/* End Header */}
-      {/* ======= Hero Section ======= */}
+  
       <section id="hero" className="d-flex align-items-center">
         <div className="container">
           <div className="row">
@@ -136,10 +133,8 @@ export const Home = () => {
           
         </div>
       </section>
-      {/* End Hero */}
       <main id="main">
 
-        {/* ======= About Us Section ======= */}
         <section id="about" className="about">
           <div className="container" data-aos="fade-up">
             <div className="section-title">
@@ -174,10 +169,8 @@ export const Home = () => {
             </div>
           </div>
         </section>
-        {/* End About Us Section */}
 
 
-        {/* ======= Cta Section ======= */}
         <section id="cta" className="cta">
           <div className="container" data-aos="zoom-in">
             <div className="row">
@@ -195,8 +188,6 @@ export const Home = () => {
             </div>
           </div>
         </section>
-        {/* End Cta Section */}
-        {/* ======= Portfolio Section ======= */}
         <section id="portfolio" className="portfolio">
           <div className="container" data-aos="fade-up">
             <div className="section-title">
@@ -299,14 +290,14 @@ export const Home = () => {
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 portfolio-item filter-card">
-                <div className="portfolio-img">
+                 <div className="portfolio-img">
                   {/* <img
                     src=
                     {seminar2}
                     className="img-fluid"
                     alt=""
                   /> */}
-                </div>
+                </div> 
                 <div className="portfolio-info">
 
 
@@ -435,15 +426,12 @@ export const Home = () => {
             </div>
           </div>
         </section>
-        {/* End Portfolio Section */}
 
 
 
-
-        {/* ======= Contact Section ======= */}
         <section id="contact" className="contact">
           <div className="container" data-aos="fade-up">
-            <div className="section-title">
+            <div className="section-title contact">
               <h2>Contact</h2>
               <p>
                 If you have any query regarding to anything then contact us. We will be happy to assist you.
@@ -455,10 +443,7 @@ export const Home = () => {
 
           </div>
         </section>
-        {/* End Contact Section */}
       </main>
-      {/* End #main */}
-      {/* ======= Footer ======= */}
       <footer id="footer">
         <div className="footer-newsletter">
           <div className="container">
@@ -538,16 +523,9 @@ export const Home = () => {
             </strong>
             . All Rights Reserved
           </div>
-          <div className="credits">
-            {/* All the links in the footer should remain intact. */}
-            {/* You can delete the links only if you purchased the pro version. */}
-            {/* Licensing information: https://bootstrapmade.com/license/ */}
-            {/* Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ */}
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
+     
         </div>
       </footer>
-      {/* End Footer */}
     </>
 
 

@@ -12,6 +12,14 @@ const eventSchema=new Schema({
     },
     college:{
         type:String
+    },
+    cordinatorName:{
+        type:String,
+        required:true
+    },
+    contactEmail:{
+        type:String,
+        required:true
     }
 
 })
