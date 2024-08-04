@@ -19,24 +19,6 @@ router.post('/signup', async (req, res) => {
   }).then(users => res.json(users));
   // return res.redirect('/login');
 });
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const user = await User.findOne({ email });
-    console.log(user);
-    if (!user) {
-      return res.status(401).json({ success: false, message: 'Invalid email or user not found' });
-    }
-    if (!bcrypt.compare(password,user.password)) {
-      return res.status(401).json({ success: false, message: 'Invalid email or password' });
-    }
-    // res.json({ success: true, message: 'Login successful' });
-    res.send(user)
-  } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ success: false, message: 'Server error' });
-  }
-});
 
 router.get('/:enrollment',async(req,res)=>{
   const enrollment=req.params.enrollment;
