@@ -37,19 +37,19 @@ export const StudentProfile = () => {
       //     })
       //     .catch(error => {
       //       console.error('Error fetching data:', error);
-      //     });
+      //   });
       try {
         let url = `http://localhost:3001/user/${cookieValue}`;
         const response = await axios.get(url);
         console.log(response.data);
-    
+
         // Assuming the response data is an array with a single object
         const userData = response.data[0];
         console.log('College:', userData.college);
         console.log('Name:', userData.name);
         console.log('Phone No:', userData.phoneNo);
     
-        setData(userData); // Set the single object as data
+        setData(userData); 
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);

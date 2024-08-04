@@ -102,19 +102,24 @@ export const OranizerDashboard = () => {
             <tr>
               <th>Type</th>
               <th>Name</th>
+              <th>participants</th>
               <th>Date</th>
               <th>College</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
+            {data.map((item) => {
+                const encodedEventName = encodeURIComponent(item.eventName.replace(/\s+/g, '-'));
+
+            return(
               <tr key={item.id}>
                 <td>{item.eventType}</td>
                 <td>{item.eventName}</td>
+                <td><a href={`/organizer/participants?eventName=${encodedEventName}`}>view</a></td>
                 <td>{item.eventDateTime}</td>
                 <td>{item.college}</td>
               </tr>
-            ))}
+            )})}
           </tbody>
         </table>
       </div>
@@ -190,105 +195,7 @@ export const OranizerDashboard = () => {
       </div>
     </div>
   </div>
-  <div id="editEventModal" className="modal fade">
-    <div className="modal-dialog">
-      <div className="modal-content">
-        <form>
-          <div className="modal-header">
-            <h4 className="modal-title">Edit Event</h4>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-hidden="true"
-            >
-              ×
-            </button>
-          </div>
-          <div className="modal-body">
-            <div className="form-group">
-              <label>Event Name</label>
-              <input type="text" className="form-control" required="" />
-            </div>
-            <div className="form-group">
-              <label>Event type</label>
-              <input type="text" className="form-control" required="" />
-            </div>
-            <div className="form-group">
-              <label>Date</label>
-              <text className="form-control" required=""></text>
-            </div>
-            <div className="form-group">
-              <label>Branch</label>
-              <input type="text" className="form-control" required="" />
-            </div>
-          </div>
-          <div className="modal-footer">
-            <input
-              type="button"
-              className="btn btn-default"
-              data-dismiss="modal"
-              defaultValue="Cancel"
-            />
-            <input
-              type="submit"
-              className="btn btn-info"
-              defaultValue="Save"
-              onclick="myEditFunction(1)"
-            />
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div id="deleteEventModal" className="modal fade">
-    <div className="modal-dialog">
-      <div className="modal-content">
-        <form>
-          <div className="modal-header">
-            <h4 className="modal-title">Delete Event</h4>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-hidden="true"
-            >
-              ×
-            </button>
-          </div>
-          <div>
-            <label
-              htmlFor="delrow"
-              style={{ marginRight: 5, marginTop: 10, marginLeft: 30 }}
-            >
-              enter event no:
-            </label>
-            <input id="delrow" type="text" style={{ marginTop: 10 }} />
-          </div>
-          <div className="modal-body">
-            <p>Are you sure you want to delete these Records?</p>
-            <p className="text-warning">
-              <small>This action cannot be undone.</small>
-            </p>
-          </div>
-          <div className="modal-footer">
-            <input
-              type="button"
-              className="btn btn-default"
-              data-dismiss="modal"
-              defaultValue="Cancel"
-            />
-            <input
-              type="submit"
-              className="btn btn-danger"
-              defaultValue="Delete"
-              onclick=" myDeleteFunction(event)"
-            />
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+
 </>
 
 </>

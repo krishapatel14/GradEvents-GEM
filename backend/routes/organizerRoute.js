@@ -21,14 +21,6 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 
-  // try {
-  //   const { email, password } = req.body;
-  //   const token = await User.matchPasswordAndGenerateToken(email, password)
-  //   return res.cookie('token', token);
-  // } catch (error) {
-  //   console.log('error');
-  // }
-
   const { email, password } = req.body;
   try {
     const org = await Organizer.findOne({ email});

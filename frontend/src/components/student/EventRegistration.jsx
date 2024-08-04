@@ -90,7 +90,7 @@ export const EventRegistration = () => {
             // Handle error
             console.error('Error submitting form:', error);
         }
-        window.location.href='/student';
+        window.location.href='/';
     };
 
     return (

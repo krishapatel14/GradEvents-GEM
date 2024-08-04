@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const Event=require('../model/EventModel');
+const eventReg = require('../model/EventRegistration');
 
 const router = Router();
 
@@ -27,5 +28,6 @@ router.post('/addevent', async (req, res) => {
     const events=await Event.find({"eventType":type});
     res.send(events);
   })
+
 
 module.exports=router

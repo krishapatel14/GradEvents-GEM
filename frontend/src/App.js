@@ -20,6 +20,7 @@ import { EventsOthers } from './components/events/eventsOthers';
 import { EventsSeminar } from './components/events/eventsSeminar';
 import { EventsTechnical } from './components/events/eventsTechnical';
 import { AddEvent } from './components/events/addEvent';
+import { Participants } from './components/organizer/participants'
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route path='/events/seminar' element={<EventsSeminar/> }></Route>
         <Route path='/events/technical' element={<EventsTechnical/>}></Route>
         <Route path='/events/addevent' element={<AddEvent/>}></Route>
+        <Route path='/organizer/participants' element={<Participants/>}></Route>
       </Routes>
 
     </div>
